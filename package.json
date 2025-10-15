@@ -1,0 +1,25 @@
+{
+  "name": "auto-post",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./api/send-message.ts",
+  "scripts": {
+    "dev": "nodemon --watch api --ext ts --exec ts-node api/bot.ts",
+    "build": "tsc",
+    "start": "node build/bot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.0",
+  "dependencies": {
+    "@types/node": "^24.7.2",
+    "@vercel/node": "^5.3.26",
+    "dotenv": "^17.2.3",
+    "grammy": "^1.38.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2"
+  }
+}
