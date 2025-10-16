@@ -25,7 +25,7 @@ async function getLatestTechNews(): Promise<Article[]> {
         sources: "techcrunch,the-verge,wired,engadget,ars-technica",
         language: "en",
         sortBy: "publishedAt",
-        pageSize: 5,
+        pageSize: 3,
         apiKey: API_KEY,
       },
     });
@@ -45,7 +45,7 @@ async function getLatestTechNews(): Promise<Article[]> {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const chatId = "@tgchannelv1"; // your Telegram channel
+  const chatId = "@Tech_Wizardz";
 
   try {
     const articles = await getLatestTechNews();
