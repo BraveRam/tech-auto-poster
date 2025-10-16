@@ -7,7 +7,7 @@ dotenv.config();
 
 const bot = new Bot(process.env.BOT_TOKEN!);
 
-const API_KEY = process.env.NEWSAPI_KEY;
+const API_KEY = process.env.NEWS_API_KEY;
 const BASE_URL = "https://newsapi.org/v2/everything";
 
 interface Article {
