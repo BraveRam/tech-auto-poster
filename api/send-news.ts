@@ -54,7 +54,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const caption = `
 📰 <b>${article.title}</b>
 
-📝 ${article.description}
+📝 <i>${article.description}</i>
 
 🔗 <a href="${article.url}">Read more</a>
       `;
