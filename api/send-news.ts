@@ -57,6 +57,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 📝 <i>${article.description}</i>
 
 🔗 <a href="${article.url}">Read more</a>
+
+🚀 @Tech_Wizardz
       `;
 
       if (article.imageUrl) {
