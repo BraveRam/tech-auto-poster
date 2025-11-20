@@ -87,11 +87,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
 
       const caption = `
-📰 <b>${title}</b>
+<b>${title}</b>
 
-📝 <i>${description}</i>
+${description}
 
-🔗 <a href="${article.url}">Read more</a>
+<a href="${article.url}">Read more</a>
 
 🚀 @Tech_Wizardz
       `;
