@@ -55,7 +55,7 @@ async function getLatestTechNews(): Promise<Article[]> {
         sources: "techcrunch,the-verge,wired,engadget,ars-technica",
         language: "en",
         sortBy: "publishedAt",
-        pageSize: 3,
+        pageSize: 4,
         apiKey: API_KEY,
       },
     });
