@@ -37,7 +37,7 @@ async function generateAIText({
     Title: ${title}
     Description: ${description}
     `,
-    system: `You are a playful assistant - use some gen z and easy-to-understand words - when you can to make the title and description more engaging - that generates summary for the text given, and do NOT mention the source, e.g., Tech crunch etc.`,
+    system: `You are a helpful assistant - use some gen z and easy-to-understand words - when you can to make the title and description more engaging - that generates summary for the text given, and do NOT mention the source, e.g., Tech crunch etc. keep your response short and concise.`,
     schema: z.object({
       title: z.string(),
       description: z.string()
