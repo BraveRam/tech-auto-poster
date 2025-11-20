@@ -2,8 +2,15 @@ import dotenv from "dotenv";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Bot } from "grammy";
 import axios from "axios";
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { generateObject } from "ai";
+import z from "zod";
 
 dotenv.config();
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GEMINI_API_KEY,
+});
 
 const bot = new Bot(process.env.BOT_TOKEN!);
 
@@ -15,6 +22,29 @@ interface Article {
   description: string;
   imageUrl: string;
   url: string;
+}
+
+async function generateAIText({
+  title,
+  description,
+}: {
+  title: string
+  description: string
+}) {
+  const { object } = await generateObject({
+    model: google("gemini-2.5-flash"),
+    prompt: `
+    Title: ${title}
+    Description: ${description}
+    `,
+    system: `You are a playful assistant - use some gen z word when you can to make the title and description more engaging - that generates summary for the text given, and do NOT mention the source, e.g., Tech crunch etc.`,
+    schema: z.object({
+      title: z.string(),
+      description: z.string()
+    }),
+  });
+
+  return object;
 }
 
 async function getLatestTechNews(): Promise<Article[]> {
@@ -51,10 +81,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const articles = await getLatestTechNews();
 
     for (const article of articles) {
-      const caption = `
-📰 <b>${article.title}</b>
+      const { title, description } = await generateAIText({
+        title: article.title,
+        description: article.description,
+      });
 
-📝 <i>${article.description}</i>
+      const caption = `
+📰 <b>${title}</b>
+
+📝 <i>${description}</i>
 
 🔗 <a href="${article.url}">Read more</a>
 
